@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Concert+One&family=Luckiest+Guy&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text&family=Square+Peg&family=Teko:wght@300&family=Yanone+Kaffeesatz:wght@200;300&display=swap');
+
+
+/*
+font-family: 'Bangers', cursive;
+font-family: 'Concert One', cursive;
+font-family: 'Luckiest Guy', cursive;
+font-family: 'Anton', sans-serif;
+font-family: 'Crimson Text', serif;
+font-family: 'Square Peg', cursive;
+font-family: 'Teko', sans-serif;
+font-family: 'Yanone Kaffeesatz', sans-serif;
+*/
+
+/*ALL SECTIONS STYLES*/
+html{
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+    width: 100%;
+    margin: auto;
+}
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin: auto;
+    background-color: white;
+    
+}
+
+header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: auto;
+    font-family: 'Concert One', cursive;
+    flex-wrap: wrap;
+ 
+}
+
+.totales{
+    display: flex;
+    justify-content: space-between;
+    background-color: #28ed5c;
+    width: 95%;
+    padding: 1rem;
+    height: 10rem;
+    font-weight: 600;
+    
+}
+#valores{
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    align-items: center;
+    
+}
+#valores input{
+    width: 5rem;
+    height: 2rem;
+    text-align: center;
+    border: transparent;
+}
+
+#botones{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    
+}
+#botones button{
+    display: flex;
+    justify-content: center;
+    border-top-left-radius: 0.3rem;
+    border-top-right-radius: 0.3rem;
+    border-bottom-left-radius: 0.3rem;
+    border-bottom-right-radius: 0.3rem;
+    width: 5rem;
+    height: 2rem;
+    border: 0.5px;
+    align-items: center;
+    
+}
+
+#productos{
+    display: flex;
+    
+}
+
+#lista{
+    display: flex;
+    flex-direction: column;
+}
+
+.articulo{
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+    font-weight: 700;
+}
+
+.articulo input{
+    margin: 0.3rem 0;
+}
+/*ESTILOS SUPERAPP SIMPLE*/
+
+#mostrar, #cerrar, #guardar{
+    display: flex;
+}

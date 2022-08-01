@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista del Mandado</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <h2>LISTA DEL SUPERMERCADO</h2>
+    </header>
+    <main>
+        <h3>Total</h3>
+        <div class="totales">
+            <div id="valores">
+                <label for="">Presupuesto</label>
+                <input type="number" name="" id="total-pres" value="0" placeholder="Total Presupuestado">
+                <br>
+                <label for="">Real</label>
+                <input id="total-real" type="number" value="0" placeholder="Total Real">
+                <br>
+                <label for="">Diferencia</label>
+                <input id="diferencia" type="number" value="0" placeholder="Diferencia">
+                
+            </div>
+            <div id="botones">
+                <button id="guardar" onclick="guardar()">Guardar</button>
+                <button id="mostrar" onclick="obtenerLocal()">Mostrar Lista</button>
+                <button id="cerrar">Cerrar</button>
+            </div>
+            
+        </div>
+        
+
+        <section id="Productos">
+            <h4>Productos</h4>
+            <input id="boton-crear" type="button" value="(+) Agregar Articulos">
+            <div id="lista">
+                
+            </div>
+        </section>
+        
+    </main>
+    <script src="./script.js"></script>
+</body>
+
+</html>
