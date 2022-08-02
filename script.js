@@ -117,12 +117,16 @@ const guardar = () => {
     let items = document.getElementsByClassName('articulo');
     //let btnCrear=document.getElementById('boton-crear');
     let nodos = []
+    console.log(items);
+    
     for (let index = 0; index < items.length; index++) {
+        console.log((items[index].childNodes));
         //nodos.push(items[index].childNodes);
+        
         let producto = new Articulo();
-        producto.nombre_articulo = items[index].childNodes[1].value;
-        producto.precio_pres = items[index].childNodes[3].value;
-        producto.precio_real = items[index].childNodes[5].value;
+        producto.nombre_articulo = items[index].childNodes[3].value;
+        producto.precio_pres = items[index].childNodes[7].value;
+        producto.precio_real = items[index].childNodes[11].value;
         nodos.push(producto);
     }
     localStorage.setItem('presupuesto', JSON.stringify(nodos));
@@ -131,7 +135,10 @@ const guardar = () => {
     boton_Mostrar.style.display = 'unset';
     boton_Guardar.style.display = 'none';
     return nodos;
+    
 }
+
+
 
 const limpiar = () => {
     let lista = document.getElementById('lista');
