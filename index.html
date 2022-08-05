@@ -12,8 +12,6 @@
 <body>
     <header>
         <h2>LISTA DEL SUPERMERCADO</h2>
-    </header>
-    <main>
         <h3>Total</h3>
         <div class="totales">
             <div id="valores">
@@ -25,25 +23,30 @@
                 <br>
                 <label for="">Diferencia</label>
                 <input id="diferencia" type="number" value="0" placeholder="Diferencia">
-                
+
             </div>
             <div id="botones">
                 <button id="guardar" onclick="guardar()">Guardar</button>
                 <button id="mostrar" onclick="obtenerLocal()">Mostrar Lista</button>
+                <button id="guardar-cambios" onclick="guardarCambios()">Guardar Cambios</button>
                 <button id="cerrar">Cerrar</button>
+                <button id="borrar-local" onclick="borrarLista()">Borrar lista</button>
             </div>
-            
+
         </div>
-        
+        <h4>Productos</h4>
+        <input id="boton-crear" type="button" value="(+) Agregar Articulos">
+
+
+    </header>
+    <main>
 
         <section id="Productos">
-            <h4>Productos</h4>
-            <input id="boton-crear" type="button" value="(+) Agregar Articulos">
             <div id="lista">
-                
+
             </div>
         </section>
-        
+
     </main>
     <script src="./script.js"></script>
 </body>

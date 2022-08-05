@@ -5,7 +5,8 @@ const boton_Guardar = document.getElementById('guardar');
 const boton_Mostrar = document.getElementById('mostrar');
 const boton_Cerrar = document.getElementById('cerrar');
 const boton_crear = document.getElementById('boton-crear');
-
+const guardar_cambios= document.getElementById('guardar-cambios');
+const borrar_lista=document.getElementById('borrar-local');
 
 
 class Articulo {
@@ -22,12 +23,10 @@ class Articulo {
 
 function agregar(e) {
     let seccion = document.getElementById('lista');
-    let espacio = e.nextElementSibling;
     let listas = document.createElement('div');
     listas.classList = 'articulo';
     listas.innerHTML = `
             <label>Nombre Producto</label>
-            
             <input class='propiedad item' type='text' placeholder='Nombre del articulo'>
             <label>Valor Presupuesto</label>
             <input class='propiedad precio' value='0' type='number' onchange="sumaPres()" placeholder='$ Valor Presupuestado'>
@@ -38,6 +37,7 @@ function agregar(e) {
             `;
     seccion.appendChild(listas);
     boton_Guardar.style.display = 'unset';
+    
 
 
 }
@@ -82,9 +82,9 @@ const sumaPres = () => {
 
         sumaArreglo += parseFloat(inputPrecios[index].value);
     }
-    totalPresupuesto.value = sumaArreglo;
+    totalPresupuesto.value = sumaArreglo.toFixed(2);
     diferencia();
-    return sumaArreglo;
+    return sumaArreglo.toFixed(2);
 }
 
 const sumaReal = () => {
@@ -95,43 +95,36 @@ const sumaReal = () => {
         sumaReal += parseFloat(inputReal[index].value);
 
     }
-    totalReal.value = sumaReal;
+    totalReal.value = sumaReal.toFixed(2);
     diferencia();
-    return sumaReal;
+    return sumaReal.toFixed(2);
 
 }
 //FUNCION PARA DETERMINAR DIFERENCIA
 const diferencia = () => {
     let total_real = document.getElementById('total-real').value;
     let total_pres = document.getElementById('total-pres').value;
-    console.log(total_pres);
-    console.log(total_real);
     let cajaDiferencia = document.getElementById('diferencia');
-    console.log(cajaDiferencia);
-    cajaDiferencia.value = total_pres - total_real;
+    cajaDiferencia.value = (total_pres - total_real).toFixed(2);
 }
 
 //GUARDAR LISTA EN EL LOCALSTORAGE
 
 const guardar = () => {
     let items = document.getElementsByClassName('articulo');
-    //let btnCrear=document.getElementById('boton-crear');
     let nodos = []
-    console.log(items);
-    
-    for (let index = 0; index < items.length; index++) {
-        console.log((items[index].childNodes));
-        //nodos.push(items[index].childNodes);
-        
+    for(const item of items){
         let producto = new Articulo();
-        producto.nombre_articulo = items[index].childNodes[3].value;
-        producto.precio_pres = items[index].childNodes[7].value;
-        producto.precio_real = items[index].childNodes[11].value;
+        producto.nombre_articulo = item.childNodes[3].value;
+        producto.precio_pres = item.childNodes[7].value;
+        producto.precio_real = item.childNodes[11].value;
         nodos.push(producto);
+    
     }
+    
     localStorage.setItem('presupuesto', JSON.stringify(nodos));
     limpiar();
-    boton_crear.style.display = 'none';
+    //boton_crear.style.display = 'none';
     boton_Mostrar.style.display = 'unset';
     boton_Guardar.style.display = 'none';
     return nodos;
@@ -152,29 +145,72 @@ const limpiar = () => {
 }
 
 const obtenerLocal = () => {
-    let seccion = document.getElementById('lista');
-    seccion.innerHTML=" ";
-    let almacen = JSON.parse(localStorage.getItem('presupuesto'));
-    console.log(almacen);
-    for (let x = 0; x < almacen.length; x++) {
-        let elemento = document.createElement('div');
-        elemento.classList = 'articulo';
-        elemento.innerHTML = `
-            
+    if(localStorage.length===0){
+        alert('No existe lista en el almacen');
+    }
+    else{
+        let seccion = document.getElementById('lista');
+        seccion.innerHTML=" ";
+        let almacen = JSON.parse(localStorage.getItem('presupuesto'));
+        for (let x = 0; x < almacen.length; x++) {
+            let elemento = document.createElement('div');
+            elemento.classList = 'articulo';
+            elemento.innerHTML = `
+            <label>Nombre Producto</label>
             <input class='propiedad item' type='text' placeholder='Nombre del articulo' value="${almacen[x].nombre_articulo}">
+            <label>Valor Presupuesto</label>
             <input class='propiedad precio' type='number' onchange="sumaPres()" placeholder='$ Valor Presupuestado' value="${almacen[x].precio_pres}">
+            <label>Valor Real</label>
             <input class='propiedad real' type='number' onchange="sumaReal()" placeholder='$ Valor Real' value="${almacen[x].precio_real}">
             <input class='btneliminar' type='button' value='-'">
-                    
-            `;
-        seccion.appendChild(elemento);
+
+                        
+                `;
+            seccion.appendChild(elemento);
+        }
+        sumaPres();
+        sumaReal();
+    
+        boton_Mostrar.style.display = 'none';
+        //boton_crear.style.display = 'unset';
+        //boton_Cerrar.style.display = 'unset';
+        boton_Guardar.style.display='none';
+        guardar_cambios.style.display='unset';
+        borrar_lista.style.display='unset';
+    
+    
     }
-    sumaPres();
-    sumaReal();
-
-    boton_Mostrar.style.display = 'none';
-    boton_crear.style.display = 'unset';
-    boton_Cerrar.style.display = 'unset';
+    
+}
 
 
+const guardarCambios = () => {
+    let items = document.getElementsByClassName('articulo');
+    let nodos = []
+    for(const item of items){
+        let producto = new Articulo();
+        producto.nombre_articulo = item.childNodes[3].value;
+        producto.precio_pres = item.childNodes[7].value;
+        producto.precio_real = item.childNodes[11].value;
+        nodos.push(producto);
+    
+    }
+    
+    localStorage.setItem('presupuesto', JSON.stringify(nodos));
+    limpiar();
+    //boton_crear.style.display = 'none';
+    boton_Mostrar.style.display = 'unset';
+    //boton_Guardar.style.display = 'none';
+    guardar_cambios.style.display='none';
+    return nodos;
+    
+}
+
+
+const borrarLista=()=>{
+    localStorage.clear();
+    guardar_cambios.style.display='none';
+    borrar_lista.style.display='none';
+    limpiar();
+    boton_Mostrar.style.display='flex';
 }

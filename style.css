@@ -19,6 +19,7 @@ html{
     font-family: 'Yanone Kaffeesatz', sans-serif;
     width: 100%;
     margin: auto;
+    max-width: 500px;
 }
 body{
     display: flex;
@@ -32,23 +33,33 @@ body{
 
 header{
     display: flex;
+    position: sticky;
+    z-index: 999;
+    top: 0.1px;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 100%;
-    margin: auto;
     font-family: 'Concert One', cursive;
     flex-wrap: wrap;
- 
+    padding-bottom: 1rem;
+    background-color: azure;
+    
+}
+main{
+    width: auto;
+    margin-top: 2rem;
+    
 }
 
 .totales{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     background-color: #28ed5c;
-    width: 95%;
+    width: 90%;
     padding: 1rem;
-    height: 10rem;
+    /*height: 10rem;*/
+
     font-weight: 600;
     
 }
@@ -70,6 +81,7 @@ header{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    
     
 }
 #botones button{
@@ -107,7 +119,14 @@ header{
     margin: 0.3rem 0;
 }
 /*ESTILOS SUPERAPP SIMPLE*/
+#botones #guardar, 
+#botones #guardar-cambios,
+#botones #cerrar,
+#botones #borrar-local
+{
+    display: none;
+}
 
-#mostrar, #cerrar, #guardar{
+#botones #mostrar{
     display: flex;
 }
